@@ -20,8 +20,12 @@ Dado('que acesso a pagina de login\/cadastro') do
 
   Dado('preencho os campos do formulario com {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string}') do |gender, first_name, last_name, password, day, month, year, newsletter, company, adress, city, zipcode, state, phone, adress_name|
     @app.cadastropage.preencher_form_com_dados_de_exemplos(gender, first_name, last_name, password, day, month, year, newsletter, adress, city, state, zipcode, phone, adress_name)
-  end                                                                                                   
+  end   
 
+  Dado('preencho os campos do formulario com dados validos padrão') do
+    @app.cadastropage.preencher_form_com_dados_datafile
+  end
+  
   Então('devo ser direcionado à pagina de minha conta') do
     expect(@app.minhacontapage.page_title.text).to eq('MY ACCOUNT')
     expect(@app.minhacontapage.account_name.text).to eq(@app.cadastropage.account_full_name)
